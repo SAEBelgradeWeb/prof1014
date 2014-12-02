@@ -42,14 +42,14 @@
                                     <h2 class="widget-title">Popular Post</h2>
                                     <ul class="rp-widget">
                                         <li>
-                                            <img alt="" src="images/content/small-img1.jpg" />
+                                            <img alt="" src="<?php echo get_template_directory_uri(); ?>/images/content/small-img1.jpg" />
                                             <h3><a href="#">This is about our wedding event</a></h3>
                                             <span class="smalldate">June 24, 2013</span>
                                             <p>Nunc lacinia, lectus sed posuere laoreet, dui velit varius enim, id feugiat risus...</p>
                                             <span class="clear"></span>
                                         </li>
                                         <li class="last">
-                                            <img alt="" src="images/content/small-img2.jpg" />
+                                            <img alt="" src="<?php echo get_template_directory_uri(); ?>/images/content/small-img2.jpg" />
                                             <h3><a href="#">We are getting married part II</a></h3>
                                             <span class="smalldate">June 24, 2013</span>
                                             <p>Nunc lacinia, lectus sed posuere laoreet, dui velit varius enim, id feugiat risus...</p>

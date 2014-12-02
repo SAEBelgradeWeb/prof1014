@@ -82,3 +82,19 @@
             </div>
         </div>
         <!-- END HEADER -->
+<!-- BEFORE CONTENT -->
+
+<?php if (!is_front_page()){ ?>
+        <div id="outerbeforecontent">
+            <div class="container">
+                <div class="row">
+                <div id="beforecontent" class="twelve columns">
+                    <div id="pagetitle-container">
+                        <h1 class="pagetitle"><?php the_title(); ?></h1>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        <?php }; ?>
+        <!-- END BEFORE CONTENT -->
