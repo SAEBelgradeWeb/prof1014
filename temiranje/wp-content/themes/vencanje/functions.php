@@ -148,6 +148,8 @@ function register_post_types() {
 	);
 	register_post_type( 'Galerije', $args );
 
+	add_image_size( 'blog_size', 332, 208, true );
+
 }
 
 // Hook into the 'init' action
@@ -351,4 +353,6 @@ class My_Recent_Posts extends WP_Widget {
 add_action( 'widgets_init', function(){
      register_widget( 'My_Recent_Posts' );
 });
+
+
 
