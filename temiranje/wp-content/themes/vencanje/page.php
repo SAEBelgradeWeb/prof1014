@@ -19,8 +19,7 @@ get_header(); ?>
                 <div class="row">
                 
                     <section id="maincontent" class="nine columns positionleft">
-
-                          <section class="content">
+                                                      <section class="content">
 								<?php the_content(); ?>
                             </section>
 

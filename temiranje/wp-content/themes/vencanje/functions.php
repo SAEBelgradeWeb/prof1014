@@ -96,7 +96,7 @@ function register_post_types() {
 		'label'               => __( 'book', 'vencanje' ),
 		'description'         => __( 'Unos slika ', 'vencanje' ),
 		'labels'              => $labels,
-		'supports'            => array( 'title', 'excerpt', 'thumbnail', ),
+		'supports'            => array( 'title', 'excerpt', 'thumbnail', 'category'),
 		'hierarchical'        => false,
 		'public'              => true,
 		'show_ui'             => true,
@@ -108,6 +108,7 @@ function register_post_types() {
 		'has_archive'         => true,
 		'exclude_from_search' => true,
 		'publicly_queryable'  => true,
+		'taxonomies'		  => array('slajder'),
 		'capability_type'     => 'page',
 	);
 	register_post_type( 'book', $args );
@@ -150,6 +151,35 @@ function register_post_types() {
 
 	add_image_size( 'blog_size', 332, 208, true );
 
+
+	$labels = array(
+		'name'                       => _x( 'Tipovi', 'Taxonomy General Name', 'vencanje' ),
+		'singular_name'              => _x( 'Tip', 'Taxonomy Singular Name', 'vencanje' ),
+		'menu_name'                  => __( 'Tip', 'vencanje' ),
+		'all_items'                  => __( 'All Items', 'vencanje' ),
+		'parent_item'                => __( 'Parent Item', 'vencanje' ),
+		'parent_item_colon'          => __( 'Parent Item:', 'vencanje' ),
+		'new_item_name'              => __( 'New Item Name', 'vencanje' ),
+		'add_new_item'               => __( 'Add New Item', 'vencanje' ),
+		'edit_item'                  => __( 'Edit Item', 'vencanje' ),
+		'update_item'                => __( 'Update Item', 'vencanje' ),
+		'separate_items_with_commas' => __( 'Separate items with commas', 'vencanje' ),
+		'search_items'               => __( 'Search Items', 'vencanje' ),
+		'add_or_remove_items'        => __( 'Add or remove items', 'vencanje' ),
+		'choose_from_most_used'      => __( 'Choose from the most used items', 'vencanje' ),
+		'not_found'                  => __( 'Not Found', 'vencanje' ),
+	);
+	$args = array(
+		'labels'                     => $labels,
+		'hierarchical'               => true,
+		'public'                     => true,
+		'show_ui'                    => true,
+		'show_admin_column'          => true,
+		'show_in_nav_menus'          => true,
+		'show_tagcloud'              => true,
+	);
+	register_taxonomy( 'slajder', array( 'book' ), $args );
+
 }
 
 // Hook into the 'init' action
@@ -177,8 +207,8 @@ function vencanje_widgets_init() {
 		'name'          => __( 'Footer bar', 'vencanje' ),
 		'id'            => 'footer',
 		'description'   => '',
-		'before_widget' => '<li id="%1$s" class="widget-container">',
-		'after_widget'  => '</li>',
+		'before_widget' => '<div id="footcol1" class="four columns"><ul><li id="%1$s" class="widget-container">',
+		'after_widget'  => '</li></ul></div>',
 		'before_title'  => '<h2 class="widget-title">',
 		'after_title'   => '</h2>',
 	) );
@@ -354,5 +384,51 @@ add_action( 'widgets_init', function(){
      register_widget( 'My_Recent_Posts' );
 });
 
+function shortcode_kurs($attr, $content = "") {
+	$boja = $attr['boja'];
+	if (!$boja) $boja = "blue";
+	ob_start();
+?>
+<h1 style="color:<?php echo $boja; ?>;"><?php echo $content; ?></h1>
+
+<?php
+
+$out = ob_get_clean();
+
+	return $out;
+}
+
+add_shortcode( "kurs", "shortcode_kurs" );
 
 
+
+
+// init process for registering our button
+add_action('init', 'wpse72394_shortcode_button_init');
+function wpse72394_shortcode_button_init() {
+
+      //Abort early if the user will never see TinyMCE
+      if ( ! current_user_can('edit_posts') && ! current_user_can('edit_pages') && get_user_option('rich_editing') == 'true')
+           return;
+
+      //Add a callback to regiser our tinymce plugin   
+      add_filter("mce_external_plugins", "wpse72394_register_tinymce_plugin"); 
+
+      // Add a callback to add our button to the TinyMCE toolbar
+      add_filter('mce_buttons', 'wpse72394_add_tinymce_button');
+}
+
+
+//This callback registers our plug-in
+function wpse72394_register_tinymce_plugin($plugin_array) {
+    $plugin_array['wpse72394_button'] = get_template_directory_uri() .'/js/shortcode.js';
+    return $plugin_array;
+}
+
+//This callback adds our button to the toolbar
+function wpse72394_add_tinymce_button($buttons) {
+            //Add the button ID to the $button array
+    $buttons[] = "wpse72394_button";
+    return $buttons;
+}
+	

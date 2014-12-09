@@ -15,7 +15,8 @@
             <div id="outerfootersidebar">
                 <div class="container">
                     <div id="footersidebar" class="row"> 
-
+                    <?php dynamic_sidebar( 'footer' ); ?>
+<!-- 
                         <div id="footcol1" class="four columns">
                             <ul>
                                 <li class="widget-container">
@@ -66,7 +67,7 @@
                                     <p>Praesent luctus ligula gravida urna adipiscing rutrum. Aenean tempus fringilla nulla. Phasellus eu accumsan velit, ac mollis tellus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi eget ipsum urna. </p>
                                 </li>
                             </ul>
-                        </div>
+                        </div> -->
                         <div class="clear"></div>
                  
                     </div>
