@@ -20,7 +20,7 @@ get_header(); ?>
 							$args = array (
 								'post_type' => 'post',
 								'category_name' => 'blog',
-								'posts_per_page' => 3,
+								'posts_per_page' => 2,
 								'paged' => $paged
 							);
 
@@ -76,7 +76,7 @@ get_header(); ?>
 							wp_reset_postdata();
 
 ?>
-
+<button id="more">Load more posts</button>
 <div class="wp-pagenavi">
 <?php
 

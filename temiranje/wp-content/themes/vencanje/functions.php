@@ -239,6 +239,7 @@ function vencanje_scripts() {
 	wp_enqueue_script('tinynav', get_template_directory_uri() . '/js/tinynav.min.js', array(), '1.0.0', true  );
 	wp_enqueue_script('jqflexs', get_template_directory_uri() . '/js/jquery.flexslider-min.js', array(), '1.0.0', true  );
 	wp_enqueue_script('custom', get_template_directory_uri() . '/js/custom.js', array(''), '1.0.0', true  );
+	wp_enqueue_script('ajax1', get_template_directory_uri() . '/js/ajax-functions.js');
 	
 
 
@@ -262,6 +263,7 @@ add_action( 'wp_enqueue_scripts', 'vencanje_scripts' );
  * Custom template tags for this theme.
  */
 require get_template_directory() . '/inc/template-tags.php';
+require get_template_directory() . '/inc/ajax-functions.php';
 
 /**
  * Custom functions that act independently of the theme templates.

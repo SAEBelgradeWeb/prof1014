@@ -777,3 +777,12 @@ ul.flickr li.nomargin{margin-right:0 !important;}
 #copyright{ padding:38px 0;}
 #copyright a, #copyright a:visited{}
 
+.ajaxloader {
+	background-color: rgba(0,0,0,0.7);
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	
+}
